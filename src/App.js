@@ -24,6 +24,7 @@ function App() {
       </div>
   )
 }
+export default App;
 // export default class App extends React.Component {
 //   state = {
 //     otp: ""
