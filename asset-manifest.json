@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/otpreact/static/js/main.9d730de2.js",
+    "main.js": "/otpreact/static/js/main.814a611b.js",
     "index.html": "/otpreact/index.html",
-    "main.9d730de2.js.map": "/otpreact/static/js/main.9d730de2.js.map"
+    "main.814a611b.js.map": "/otpreact/static/js/main.814a611b.js.map"
   },
   "entrypoints": [
-    "static/js/main.9d730de2.js"
+    "static/js/main.814a611b.js"
   ]
 }
