@@ -15,8 +15,12 @@ if ("OTPCredential" in window) {
       otp: { transport: ["sms"] },
       signal: ac.signal
     })
-    .then((otp) => {
-      this.setState({ otp: otp.code });
+    .then((ot) => {
+      if(this.state.otp)
+      {
+        this.setState({ otp: null });
+      }
+      this.setState({ otp: ot.code });
       ac.abort();
     })
     .catch((err) => {
