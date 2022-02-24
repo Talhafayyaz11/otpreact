@@ -30,8 +30,27 @@ function useOtp(setOtp,otp) {
 
 export default function App() {
   const [ot,setOtp] =useState(null)
-  const otp =useOtp(ot,setOtp) 
+  useEffect(() => {
+    if ('OTPCredential' in window) {
+      const ac = new AbortController()
+      navigator.credentials
+        .get({
+          otp: { transport: ['sms'] },
+          signal: ac.signal,
+        })
+        .then((otp) => {
+          setOtp(otp.code)
+          ac.abort()
+        })
+        .catch((err) => {
+          ac.abort()
+          console.log(err)
+          setOtp(err)
+        })
+    }
+   }, [setOtp,ot])
+  // const otp =useOtp(ot,setOtp) 
   return (
-    <div>App otp:{otp}</div>
+    <div>App otp is:{ot}</div>
   )
 }
