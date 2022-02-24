@@ -35,7 +35,7 @@ if ("OTPCredential" in window) {
   render() {
     return (
       <div className="App">
-        <h1>Hello CodeSandbox</h1>
+        <h1>Hello OTP TEST</h1>
         <h2>Your OTP is: {this.state.otp}</h2>
       </div>
     );
