@@ -1,56 +1,39 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 
-function useOtp(setOtp,otp) {
+export default class App extends React.Component {
+  state = {
+    otp: ""
+  };
 
-    useEffect(() => {
-     if ('OTPCredential' in window) {
-       const ac = new AbortController()
-       navigator.credentials
-         .get({
-           otp: { transport: ['sms'] },
-           signal: ac.signal,
-         })
-         .then((otp) => {
-           setOtp(otp.code)
-           ac.abort()
-         })
-         .catch((err) => {
-           ac.abort()
-           console.log(err)
-           setOtp(err)
-         })
-     }
-    }, [setOtp,otp])
-     return otp
-   }
+componentDidMount() {
 
+if ("OTPCredential" in window) {
+  const ac = new AbortController();
 
-
+  navigator.credentials
+    .get({
+      otp: { transport: ["sms"] },
+      signal: ac.signal
+    })
+    .then((otp) => {
+      this.setState({ otp: otp.code });
+      ac.abort();
+    })
+    .catch((err) => {
+      ac.abort();
+      console.log(err);
+    });
+}
 
 
-export default function App() {
-  const [ot,setOtp] =useState(null)
-  useEffect(() => {
-    if ('OTPCredential' in window) {
-      const ac = new AbortController()
-      navigator.credentials
-        .get({
-          otp: { transport: ['sms'] },
-          signal: ac.signal,
-        })
-        .then((otp) => {
-          setOtp(otp.code)
-          ac.abort()
-        })
-        .catch((err) => {
-          ac.abort()
-          console.log(err)
-          setOtp(err)
-        })
-    }
-   }, [setOtp,ot])
-  // const otp =useOtp(ot,setOtp) 
-  return (
-    <div>App otp is:{ot}</div>
-  )
+}
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello CodeSandbox</h1>
+        <h2>Your OTP is: {this.state.otp}</h2>
+      </div>
+    );
+  }
 }
